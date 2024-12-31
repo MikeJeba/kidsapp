@@ -1,116 +1,59 @@
-# Simple Addition Operation Project
+# Simple Addition Operation - Backend
 
-A basic web application for performing addition operations.  
-This project is designed for learning and implementing full-stack development, combining **HTML**, **CSS**, and **JavaScript** on the frontend, with a **Java Spring Boot** backend and a **MySQL** database.
+This repository contains the backend service for a simple addition operation. Built using **Java Spring Boot**, the backend exposes an API that display username,score, timestamp and stores the result in a **MySQL** database.
 
 ---
 
 ## Features
-
-- **Frontend**: 
-  - Simple and user-friendly interface to perform addition.
-  - Input validation for numeric values.
-  
-- **Backend**:
-  - REST API developed with Java Spring Boot to process the addition operation.
-  - Handles user input and ensures secure communication.
-
-- **Database**:
-  - MySQL database to store calculation history.
-
----
-
-## Tech Stack
-
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Java Spring Boot
-- **Database**: MySQL
+- **MySQL Integration**: Saves the result along with the username into a MySQL database.
+- **API Endpoint**: Exposes a RESTful API at `http://localhost:8080/api/scores`.
 
 ---
 
 ## Prerequisites
+1. **Java 8 or higher** installed on your machine.
+2. **Spring Boot** dependencies.
+3. **MySQL** installed and running.
+4. **MySQL Database** with a table to store the results. You can create a database and table with the following schema:
+   ```sql
+   CREATE DATABASE add_operation;
+   USE add_operation;
+   CREATE TABLE scores (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       username VARCHAR(100),
+       num1 DOUBLE,
+       num2 DOUBLE,
+       result DOUBLE
+   );
+MySQL Configuration: Update the application.properties file with your MySQL database credentials.
+How to Set Up the Backend
+Clone this repository:
 
-Ensure you have the following installed on your system:
+Navigate to the project directory:
 
-1. [Java JDK 17+](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
-2. [Spring Boot CLI](https://spring.io/tools)
-3. [MySQL](https://dev.mysql.com/downloads/)
-4. Git (for version control)
+Install dependencies and build the project (using Maven or Gradle):
+For Maven:
 
----
+mvn clean install
 
-## Installation and Setup
-
-### 1. Clone the Repository
-
-2. Setup the Frontend
-Navigate to the frontend directory:
-
-3. Setup the Backend
-Navigate to the backend directory:
-
-Open the project in your IDE (e.g., IntelliJ IDEA).
-
-Configure the database:
-
-Open application.properties in the src/main/resources directory.
-
-Set the following properties:
-
+Update application.properties with your MySQL database details:
 properties
-
-spring.datasource.url=jdbc:mysql://localhost:3306/<project name>
-
-spring.datasource.username=<your_mysql_username>
-
-spring.datasource.password=<your_mysql_password>
-
+Copy code
+spring.datasource.url=jdbc:mysql://localhost:3306/math_game
+spring.datasource.username=your_mysql_username
+spring.datasource.password=your_mysql_password
 spring.jpa.hibernate.ddl-auto=update
+Run the application:
 
-Replace <your_mysql_username> and <your_mysql_password> with your MySQL credentials.
+mvn spring-boot:run
 
-Start the backend server:
-./mvnw spring-boot:run
+API Endpoint
+The backend exposes the following API endpoint:
+POST /api/scores
 
-4. Database Setup
-Create a new database in MySQL:
-
-sql
-
-CREATE DATABASE simple_addition;
-
-The application will automatically create the required tables when it runs.
-
-Usage
-Open the index.html file in your browser.
-
-The result will be displayed on the page, and the calculation will be saved in the database.
-
-API Endpoints
-The backend exposes the following REST API endpoint:
-
-POST /api/add
-Request Body (JSON):
-json
-
-Fork the repository.
-Create a new branch for your feature:
-
-git checkout -b feature-name
-
-Commit your changes and push to your fork:
-
-git push origin feature-name
-Open a pull request.
-
-License
-This project is licensed under the MIT License.
-
-Contact
-For any questions or feedback, feel free to reach out:
-Email: jebajovitha@gmail.com
-
-
-
-
+Testing the Backend
+Make sure the backend is running on http://localhost:8080.
+You can use Postman or curl to test the API.
+First, send a POST request to http://localhost:8080/api/scores.
+After receiving the result, submit the username to save the result.
 
